@@ -2,6 +2,8 @@ from django.db import models
 from django.db.models import base
 from django.utils.translation import gettext_lazy as _
 from django.utils.text import slugify
+from django.contrib.auth.models import User
+from django_countries.fields import CountryField
 
 # Create your models here.
 def image_upload(instance, filename):
@@ -14,8 +16,9 @@ JOB_TYPES = (
 )
 
 class Job(models.Model):
+    JOBowner = models.ForeignKey(User, related_name="job_owner", on_delete=models.CASCADE, verbose_name=_("Job Owner"))
     JOBTitle = models.CharField(max_length=100, verbose_name=_("Title"))
-    # location = 
+    PRFCountry = CountryField(blank=True, null=True, verbose_name=_("Country"))
     JOBJobtype = models.CharField(max_length=15, choices=JOB_TYPES,verbose_name=_('Job Type'))
     JOBDescription = models.TextField(max_length=1000, verbose_name=_("Description"))
     JOBCreated_at = models.DateTimeField(auto_now=True, verbose_name=_("Date Created"))

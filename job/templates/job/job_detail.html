@@ -29,7 +29,14 @@
                                     <a href="#"><h4>{{job}}</h4></a>
                                     <div class="links_locat d-flex align-items-center">
                                         <div class="location">
-                                            <p> <i class="fa fa-map-marker"></i> California, USA</p>
+                                            <p> <i class="fa fa-map-marker"></i> 
+                                            {% if job.PRFCountry %}
+                                                {{job.PRFCountry}}
+                                            {% else %}
+                                                No Info Available
+                                            {% endif %}
+                            
+                                            </p>
                                         </div>
                                         <div class="location">
                                             <p> <i class="fa fa-clock-o"></i> {{job.JOBJobtype}}</p>
@@ -56,7 +63,10 @@
                         {% if messages %}
                             <ul class="messages">
                                 {% for message in messages %}
-                                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                                    <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>
+                                        {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}Important: {% endif %}
+                                        {{ message }}
+                                    </li>
                                 {% endfor %}
                             </ul>
                         {% else %}
@@ -81,7 +91,14 @@
                                 <li>Published on: <span>{{job.JOBCreated_at|date:'d/m/y'}}</span></li>
                                 <li>Vacancy: <span>{{job.JOBVacancy}} Position</span></li>
                                 <li>Salary: <span>{{job.JOBSalary}}k/m</span></li>
-                                <li>Location: <span>California, USA</span></li>
+                                <li>Location: <span>
+                                {% if job.PRFCountry %}
+                                    {{job.PRFCountry}}
+                                {% else %}
+                                    No Info Available
+                                {% endif %}
+
+                                </span></li>
                                 <li>Job Nature: <span> {{job.JOBJobtype}}</span></li>
                             </ul>
                         </div>

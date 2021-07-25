@@ -23,7 +23,9 @@ def job_detail(request, slug):
             myform.APPJob = job_detail
             myform.save()
             message="Thanks for applying"
-            messages.add_message(request, messages.INFO, message)
+        else:
+            message="Somthing Worng happened. Please check your data."
+        messages.add_message(request, messages.INFO, message)
     else:
         form=ApplicationForm
 

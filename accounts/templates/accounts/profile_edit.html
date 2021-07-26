@@ -1,14 +1,10 @@
 {% extends 'base.html' %}
+{% load bootstrap4 %}
 {% block body %}
     <!-- bradcam_area  -->
     <div class="bradcam_area bradcam_bg_1">
         <div class="container">
             <div class="row">
-                <div class="col-xl-12">
-                    <div class="bradcam_text">
-                        <h3>FIND YOUR DREAM JOB WITH US</h3>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
@@ -20,6 +16,7 @@
                 <div class="col-lg-10 mx-auto">
 
                     <div class="apply_job_form white-bg">
+                        <h4>Edit Profile</h4>
                         {% if messages %}
                             <ul class="messages">
                                 {% for message in messages %}
@@ -31,8 +28,13 @@
                             </ul>
                         {% endif %}
                         <form method="POST" class="form" enctype="multipart/form-data">
-                            {% block content %}
-                            {% endblock content %}                            
+                            {% csrf_token %}
+                            {% bootstrap_form userform %}
+                            {% bootstrap_form profileform %}
+                            {% buttons %}
+                                <button class="boxed-btn3 w-100" type="submit">Update</button>
+                            {% endbuttons %}
+                        
                         </form>
                     </div>
                 </div>

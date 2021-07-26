@@ -41,9 +41,12 @@ INSTALLED_APPS = [
 
     # libs
     "bootstrap4",
+    'rest_framework',
+    'django_filters',
         
     # my apps
     'job',
+    'contact',
 ]
 
 MIDDLEWARE = [
@@ -132,6 +135,8 @@ STATICFILES_DIRS = [
 import os
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+
+
 
 
 # Default primary key field type
